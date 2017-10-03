@@ -114,4 +114,5 @@ App.defaultProps = {
   direction: 'bottom',
 };
 
-export default { App, Calendar };
+export default App;
+export { Calendar };
