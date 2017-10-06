@@ -115,3 +115,4 @@ App.defaultProps = {
 };
 
 export default App;
+export { Calendar };
