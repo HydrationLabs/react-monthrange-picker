@@ -60,7 +60,7 @@ class YearBase extends React.Component {
     // passing selectedDateRange because the app should get the range rather
     // than start or end of the range.
     // this.datePoint is a reference to the prop selectedDateRange
-    this.props.onSelect(this.props.selectedDateRange);
+    this.props.onSelect(this.props.selectedDateRange, this.datePoint);
   }
   render() {
     const currYear = this.state.currYear;
@@ -73,13 +73,14 @@ class YearBase extends React.Component {
     const months = MONTHS.map((month, idx) => {
       newDate.setMonth(idx);
       let selection = '';
-      if (currYear === this.datePoint.format('YYYY') && month === this.datePoint.format('MMM')) {
-        selection = 'selected';
-      } else if (selectedRange.contains(newDate, true)) {
-        selection = 'highlight';
-      }
       if (!restrictionRange.contains(newDate, false)) {
         selection = 'disabled';
+      } else if (this.props.monthClass) {
+        selection = this.props.monthClass(newDate);
+      } else if (currYear === this.datePoint.format('YYYY') && month === this.datePoint.format('MMM')) {
+        selection = 'selected';
+      } else if (selectedRange && selectedRange.contains(newDate, true)) {
+        selection = 'highlight';
       }
 
       return (
@@ -128,9 +129,10 @@ class YearBase extends React.Component {
 YearBase.propTypes = {
   restrictionRange: CustomPropTypes.MomentRangeType.isRequired,
   currYear: CustomPropTypes.MomentType.isRequired,
-  selectedDateRange: CustomPropTypes.MomentRangeType.isRequired,
+  selectedDateRange: CustomPropTypes.MomentRangeType,
   onYearChange: React.PropTypes.func,
   onSelect: React.PropTypes.func.isRequired,
+  monthClass: React.PropTypes.func,
 };
 
 class YearStart extends YearBase {
@@ -155,7 +157,18 @@ class YearEnd extends YearBase {
   }
 }
 
+class YearBoth extends YearBase {
+  constructor(props) {
+    super(props);
+    this.datePoint = props.currYear;
+  }
+  componentWillReceiveProps(nextProps) {
+    super.componentWillReceiveProps(nextProps);
+  }
+}
+
 export {
   YearStart,
   YearEnd,
+  YearBoth,
 };

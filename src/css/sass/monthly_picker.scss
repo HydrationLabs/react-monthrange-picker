@@ -71,6 +71,16 @@
     .year {
       padding: 3px 2px 3px 10px;
       border-right: solid #999 1px;
+      
+      .start {
+        border-top-left-radius: 50px;
+        border-bottom-left-radius: 50px;
+      }
+
+      .end {
+        border-top-right-radius: 50px;
+        border-bottom-right-radius: 50px;
+      }
 
       &.year-start .selected {
         @include border-top-left-radius($month_selection_border_radius);
@@ -102,6 +112,7 @@
         padding: 0;
         font-size: 0.9em;
         border: 2px solid transparent;
+        box-sizing: content-box;
 
         button {
           padding: 15px;
@@ -113,6 +124,8 @@
 
         &.highlight {
           background-color: $highlight_month;
+          padding: 0 0.5px 0 0.5px;
+          margin: 0.5px 0 0.5px 0;
 
           button {
             color: #fff;

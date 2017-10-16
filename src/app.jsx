@@ -3,6 +3,7 @@ import moment from 'moment';
 import CustomPropTypes from './utils/custom_prop_types';
 import Picker from './picker';
 import Calendar from './calendar';
+import { YearBoth } from './year';
 
 require('moment-range');
 
@@ -115,4 +116,4 @@ App.defaultProps = {
 };
 
 export default App;
-export { Calendar };
+export { Calendar, YearBoth };
