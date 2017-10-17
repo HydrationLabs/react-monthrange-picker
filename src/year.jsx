@@ -53,7 +53,7 @@ class YearBase extends React.Component {
   selectMonth(e) {
     e.preventDefault();
     e.stopPropagation();
-    const target = $(e.target);
+    const target = $(e.currentTarget).children().first();
     const selectedMonth = parseInt(target.data('idx'), 10);
     // this is either start or end of the moment range
     this.datePoint.month(selectedMonth).year(this.state.currYear);
@@ -84,11 +84,10 @@ class YearBase extends React.Component {
       }
 
       return (
-        <span key={Date.now() + idx} className={`${selection} month`}>
+        <span key={Date.now() + idx} className={`${selection} month`} onClick={selection === 'disabled' ? () => {} : this.selectMonthFn}>
           <button
             className="cal-month btn btn-plain"
             data-idx={idx}
-            onClick={selection === 'disabled' ? () => {} : this.selectMonthFn}
             data-month={month}
           >
             {month}
