@@ -161,9 +161,6 @@ class YearBoth extends YearBase {
     super(props);
     this.datePoint = props.currYear;
   }
-  componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps(nextProps);
-  }
 }
 
 export {
