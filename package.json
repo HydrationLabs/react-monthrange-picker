@@ -12,7 +12,6 @@
     "cover:clean": "node_modules/rimraf/bin.js coverage",
     "lint": "node_modules/eslint/bin/eslint.js --ext .js,.jsx src test",
     "test": "node_modules/karma/bin/karma start",
-    "prepublish": "in-publish && safe-publish-latest && npm run build || not-in-publish",
     "dev": "node_modules/gulp/bin/gulp.js dev",
     "tag": "git tag v$npm_package_version",
     "version:patch": "npm --no-git-tag-version version patch",
