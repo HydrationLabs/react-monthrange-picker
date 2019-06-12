@@ -11,7 +11,7 @@ require('moment-range');
 describe('<Year/>', () => {
   describe('<YearStart/>', () => {
     const restrictionRange = moment.range(new Date(2000, 0, 1),
-    new Date(new Date().getFullYear() + 4), 11, 31);
+    new Date(new Date().getFullYear() + 4, 11, 31));
 
     const yearStart = new Date();
     yearStart.setMonth(0);
@@ -45,6 +45,7 @@ describe('<Year/>', () => {
           currYear={currYear}
           onSelect={() => {}}
         />);
+
       expect(wrapper.find('.selected')).to.have.length(1);
       expect(wrapper.find('.highlight')).to.have.length(11);
 
@@ -181,7 +182,7 @@ describe('<Year/>', () => {
   });
   describe('<YearEnd/>', () => {
     const restrictionRange = moment.range(new Date(2000, 0, 1),
-    new Date(new Date().getFullYear() + 4), 11, 31);
+    new Date(new Date().getFullYear() + 4, 11, 31));
 
     const yearStart = new Date();
     yearStart.setMonth(0);
@@ -256,7 +257,6 @@ describe('<Year/>', () => {
       const selectedDateRange = moment.range(yearStart, yearEnd);
       const currYear = moment(new Date());
 
-
       const wrapper = mount(
         <YearEnd
           selectedDateRange={selectedDateRange.clone()}
@@ -264,6 +264,7 @@ describe('<Year/>', () => {
           currYear={currYear}
           onSelect={() => {}}
         />);
+
       expect(wrapper.find('.highlight')).to.have.length(11);
       expect(wrapper.find('.selected').text()).to.equal(selectedDateRange.end.format('MMM'));
     });
