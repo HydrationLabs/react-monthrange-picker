@@ -1,5 +1,5 @@
 {
-  "name": "@hydrationlabs/react-monthrange-picker-hydrationlabs",
+  "name": "@hydrationlabs/react-monthrange-picker",
   "version": "1.9.4",
   "description": "ReactJS Month range picker",
   "main": "index.js",
