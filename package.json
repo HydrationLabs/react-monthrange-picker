@@ -1,6 +1,6 @@
 {
-  "name": "react-monthrange-picker-hydrationlabs",
-  "version": "1.9.3",
+  "name": "@hydrationlabs/react-monthrange-picker-hydrationlabs",
+  "version": "1.9.4",
   "description": "ReactJS Month range picker",
   "main": "index.js",
   "scripts": {
@@ -32,7 +32,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:HydrationLabs/react-monthrange-picker.git"
+    "url": "git+ssh://git@github.com/HydrationLabs/react-monthrange-picker.git"
   },
   "keywords": [
     "reactjs",
