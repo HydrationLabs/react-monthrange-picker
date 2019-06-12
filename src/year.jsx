@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import $ from 'jquery';
 import CustomPropTypes from './utils/custom_prop_types';
@@ -29,7 +30,7 @@ class YearBase extends React.Component {
       currYear: this.props.currYear.format('YYYY'),
     };
   }
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({ currYear: nextProps.currYear.format('YYYY') });
   }
   changeYear(n) {
@@ -129,9 +130,9 @@ YearBase.propTypes = {
   restrictionRange: CustomPropTypes.MomentRangeType.isRequired,
   currYear: CustomPropTypes.MomentType.isRequired,
   selectedDateRange: CustomPropTypes.MomentRangeType,
-  onYearChange: React.PropTypes.func,
-  onSelect: React.PropTypes.func.isRequired,
-  monthClass: React.PropTypes.func,
+  onYearChange: PropTypes.func,
+  onSelect: PropTypes.func.isRequired,
+  monthClass: PropTypes.func,
 };
 
 class YearStart extends YearBase {
@@ -139,9 +140,9 @@ class YearStart extends YearBase {
     super(props);
     this.datePoint = this.props.selectedDateRange.start;
   }
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.datePoint = nextProps.selectedDateRange.start;
-    super.componentWillReceiveProps(nextProps);
+    super.UNSAFE_componentWillReceiveProps(nextProps);
   }
 }
 
@@ -150,9 +151,9 @@ class YearEnd extends YearBase {
     super(props);
     this.datePoint = this.props.selectedDateRange.end;
   }
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.datePoint = nextProps.selectedDateRange.end;
-    super.componentWillReceiveProps(nextProps);
+    super.UNSAFE_componentWillReceiveProps(nextProps);
   }
 }
 

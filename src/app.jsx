@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import moment from 'moment';
 import CustomPropTypes from './utils/custom_prop_types';
@@ -24,18 +25,6 @@ class App extends React.Component {
       this.props.onRender();
     }
   }
-  componentWillReceiveProps(nextProps) {
-    const localState = Object.assign({}, this.state, nextProps);
-    this.setState(localState);
-  }
-  onSelect(newDateRange) {
-    // so that if the user clicks cancel it doesn't change.
-    this.selectedDateRange = newDateRange.clone();
-
-    if (this.props.onSelect) {
-      this.props.onSelect(this.selectedDateRange);
-    }
-  }
   onApply() {
     if (this.props.onApply) {
       this.props.onApply(this.selectedDateRange);
@@ -53,6 +42,18 @@ class App extends React.Component {
       this.props.onCancel();
     }
     this.setState(this.state);
+  }
+  onSelect(newDateRange) {
+    // so that if the user clicks cancel it doesn't change.
+    this.selectedDateRange = newDateRange.clone();
+
+    if (this.props.onSelect) {
+      this.props.onSelect(this.selectedDateRange);
+    }
+  }
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    const localState = Object.assign({}, this.state, nextProps);
+    this.setState(localState);
   }
   handleClick(e) {
     e.preventDefault();
@@ -88,16 +89,16 @@ class App extends React.Component {
 App.propTypes = {
   selectedDateRange: CustomPropTypes.MomentRangeType,
   restrictionRange: CustomPropTypes.MomentRangeType,
-  onYearChange: React.PropTypes.func,
-  onRender: React.PropTypes.func, // called after the initial render of the
-  onSelect: React.PropTypes.func,
-  onApply: React.PropTypes.func,
-  onCancel: React.PropTypes.func,
-  display: React.PropTypes.bool,
-  direction: React.PropTypes.oneOf(['top', 'left', 'right', 'bottom']),
-  position: React.PropTypes.shape({
-    top: React.PropTypes.number,
-    left: React.PropTypes.number,
+  onYearChange: PropTypes.func,
+  onRender: PropTypes.func, // called after the initial render of the
+  onSelect: PropTypes.func,
+  onApply: PropTypes.func,
+  onCancel: PropTypes.func,
+  display: PropTypes.bool,
+  direction: PropTypes.oneOf(['top', 'left', 'right', 'bottom']),
+  position: PropTypes.shape({
+    top: PropTypes.number,
+    left: PropTypes.number,
   }),
 };
 
