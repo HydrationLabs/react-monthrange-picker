@@ -1,10 +1,13 @@
+import Adapter from 'enzyme-adapter-react-16/build';
 import React from 'react';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { mount } from 'enzyme';
+import { configure, mount } from 'enzyme';
 import moment from 'moment';
 
 import Calendar from '../../src/calendar';
+
+configure({ adapter: new Adapter() });
 
 require('moment-range');
 

@@ -1,10 +1,13 @@
+import Adapter from 'enzyme-adapter-react-16/build';
 import React from 'react';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { mount } from 'enzyme';
+import { configure, mount } from 'enzyme';
 import moment from 'moment';
 
 import { YearStart, YearEnd } from '../../src/year';
+
+configure({ adapter: new Adapter() });
 
 require('moment-range');
 
@@ -32,7 +35,7 @@ describe('<Year/>', () => {
           currYear={currYear}
           onSelect={() => {}}
         />);
-      expect(wrapper.component.getInstance().datePoint).to.equal(selectedDateRange.start);
+      expect(wrapper.instance().datePoint).to.equal(selectedDateRange.start);
     });
     it('month selection should correspond to the start moment range', () => {
       const selectedDateRange = moment.range(yearStart, yearEnd);
@@ -177,7 +180,7 @@ describe('<Year/>', () => {
         onSelect: () => {},
       });
       expect(wrapper.state().currYear).to.equal(currYear.format('YYYY'));
-      expect(wrapper.node.datePoint).to.equal(selectedDateRange.start);
+      expect(wrapper.instance().datePoint).to.equal(selectedDateRange.start);
     });
   });
   describe('<YearEnd/>', () => {
@@ -204,7 +207,7 @@ describe('<Year/>', () => {
           currYear={currYear}
           onSelect={() => {}}
         />);
-      expect(wrapper.component.getInstance().datePoint).to.equal(selectedDateRange.end);
+      expect(wrapper.instance().datePoint).to.equal(selectedDateRange.end);
     });
     it('props change should update datepoint and current year', () => {
       const selectedDateRange = moment.range(yearStart, yearEnd);
@@ -228,7 +231,7 @@ describe('<Year/>', () => {
         onSelect: () => {},
       });
       expect(wrapper.state().currYear).to.equal(currYear.format('YYYY'));
-      expect(wrapper.node.datePoint).to.equal(selectedDateRange.end);
+      expect(wrapper.instance().datePoint).to.equal(selectedDateRange.end);
     });
 
     it('next year cannot go beyond restrictionRange.end', () => {

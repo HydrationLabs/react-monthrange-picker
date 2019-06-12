@@ -1,11 +1,13 @@
+import Adapter from 'enzyme-adapter-react-16/build';
 import React from 'react';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { shallow, mount } from 'enzyme';
+import { shallow, mount, configure } from 'enzyme';
 import moment from 'moment';
 
 import Picker from '../../src/picker';
 
+configure({ adapter: new Adapter() });
 
 require('moment-range');
 
