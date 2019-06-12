@@ -1,10 +1,13 @@
+import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { mount } from 'enzyme';
+import { configure, mount } from 'enzyme';
 import moment from 'moment';
 
 import App from '../../src/app';
+
+configure({ adapter: new Adapter() });
 
 require('moment-range');
 
@@ -68,15 +71,15 @@ describe('<app/>', () => {
     it('display none initial', () => {
       const wrapper = mount(<App />);
       wrapper.find('.popover').render();
-      expect(wrapper.find('.popover').node.style.display).to.equal('none');
+      expect(wrapper.find('.popover').getDOMNode().style.display).to.equal('none');
     });
     it('display block on picker click', () => {
       const wrapper = mount(<App />);
       wrapper.find('.picker .btn').simulate('click');
       wrapper.find('.popover').render();
-      expect(wrapper.find('.popover').node.style.display).to.equal('block');
+      expect(wrapper.find('.popover').getDOMNode().style.display).to.equal('block');
       wrapper.find('.picker .btn').simulate('click');
-      expect(wrapper.find('.popover').node.style.display).to.equal('block');
+      expect(wrapper.find('.popover').getDOMNode().style.display).to.equal('block');
     });
   });
 });

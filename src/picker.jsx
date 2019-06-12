@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import CustomPropTypes from './utils/custom_prop_types';
 
@@ -26,7 +27,7 @@ const Picker = function Picker(props) {
 
 Picker.propTypes = {
   selectedDateRange: CustomPropTypes.MomentRangeType.isRequired,
-  onClick: React.PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Picker;

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import $ from 'jquery';
 import _ from 'lodash';
@@ -55,14 +56,6 @@ class Calendar extends React.Component {
   componentDidMount() {
     this.$el = $(this.node);
     this.setStyle(this.props);
-  }
-  componentWillReceiveProps(nextProps) {
-    this.setStyle(nextProps);
-
-    const { selectedDateRange, restrictionRange } = _.cloneDeep(nextProps);
-
-    this.state = { selectedDateRange, restrictionRange };
-    this.setState(this.state);
   }
   setStyle(props) {
     let positionTop;
@@ -130,6 +123,14 @@ class Calendar extends React.Component {
 
     this.calStyle = calStyle;
     this.arrowStyle = arrowStyle;
+  }
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    this.setStyle(nextProps);
+
+    const { selectedDateRange, restrictionRange } = _.cloneDeep(nextProps);
+
+    this.state = { selectedDateRange, restrictionRange };
+    this.setState(this.state);
   }
   selectMonth(newDateRange) {
     const newDateRangeClone = newDateRange.clone();
@@ -203,19 +204,19 @@ class Calendar extends React.Component {
 Calendar.propTypes = {
   selectedDateRange: CustomPropTypes.MomentRangeType.isRequired,
   restrictionRange: CustomPropTypes.MomentRangeType.isRequired,
-  direction: React.PropTypes.oneOf(['top', 'left', 'right', 'bottom']).isRequired,
-  display: React.PropTypes.bool.isRequired,
-  onSelect: React.PropTypes.func.isRequired,
-  onApply: React.PropTypes.func,
-  onCancel: React.PropTypes.func,
-  onYearChange: React.PropTypes.func,
-  position: React.PropTypes.shape({
-    width: React.PropTypes.string,
-    top: React.PropTypes.string,
-    left: React.PropTypes.string,
+  direction: PropTypes.oneOf(['top', 'left', 'right', 'bottom']).isRequired,
+  display: PropTypes.bool.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  onApply: PropTypes.func,
+  onCancel: PropTypes.func,
+  onYearChange: PropTypes.func,
+  position: PropTypes.shape({
+    width: PropTypes.string,
+    top: PropTypes.string,
+    left: PropTypes.string,
   }),
-  static: React.PropTypes.bool,
-  hideButtons: React.PropTypes.bool,
+  static: PropTypes.bool,
+  hideButtons: PropTypes.bool,
 };
 
 export default Calendar;
